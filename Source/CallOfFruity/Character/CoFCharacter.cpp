@@ -2,6 +2,7 @@
 #include "CoFCharacter.h" // Includes the header file for this class
 #include "GameFramework/SpringArmComponent.h" // Needed for the SpringArm component
 #include "Camera/CameraComponent.h" // Needed for the Camera component
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Constructor - sets default values
 ACoFCharacter::ACoFCharacter()
@@ -18,6 +19,9 @@ ACoFCharacter::ACoFCharacter()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach to boom end
 	FollowCamera->bUsePawnControlRotation = false; // Don't rotate camera with controller
+
+	bUseControllerRotationYaw = false;
+	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
 // Called when the game starts or actor is spawned
